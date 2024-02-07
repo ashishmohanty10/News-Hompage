@@ -6,7 +6,7 @@ import Balancer from "react-wrap-balancer";
 
 const MainSection = () => {
   return (
-    <main className="md:grid md:grid-cols-3  justify-between items-start py-5 ">
+    <section className="md:grid md:grid-cols-3  justify-between items-start py-5 ">
       <div className="grid grid-cols-2 justify-between items-start   mb-4 md:mb-0">
         <img src={Retro} alt="" className="h-[200px]" />
 
@@ -51,7 +51,7 @@ const MainSection = () => {
           </Balancer>
         </div>
       </div>
-    </main>
+    </section>
   );
 };
 
