@@ -15,13 +15,13 @@ const Navbar = () => {
           <ul className="flex justify-between items-center gap-5">
             {Navlinks.map(({ href, name }) => (
               <li key={href}>
-                <Link
+                <a
                   to={href}
                   target="_self"
                   className="text-sm font-base text-DarkgrayishBlue hover:text-SoftOrange duration-75"
                 >
                   {name}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
