@@ -1,65 +1,60 @@
 import React, { useState } from "react";
 import Logo from "/logo.svg";
-import { Navlinks } from "./Links";
-import Menu from "/icon-menu.svg";
-import CloseMenu from "/icon-menu-close.svg";
+import { Navlivks } from "../data";
+import Hamburger from "/icon-menu.svg";
+import HamburgerClose from "/icon-menu-close.svg";
 
 const Navbar = () => {
-  const [toggleMenu, setToggleMenu] = useState(false);
+  const [isMenu, setIsMenu] = useState(false);
+
   const handleMenu = () => {
-    setToggleMenu(!toggleMenu);
+    setIsMenu(!isMenu);
   };
 
   return (
-    <nav className="py-5 relative">
-      <section className="container ">
+    <div className="py-5 relative">
+      <nav className="container">
         <div className="flex justify-between items-center">
+          {/* left side  */}
           <div>
             <img src={Logo} alt="" />
           </div>
 
+          {/* right */}
+
           <ul className="hidden md:flex justify-between items-center gap-5">
-            {Navlinks.map(({ href, name }) => (
-              <li key={href}>
-                <a
-                  to={href}
-                  target="_self"
-                  className="text-sm font-base text-DarkgrayishBlue hover:text-SoftOrange duration-75"
-                >
-                  {name}
-                </a>
+            {Navlivks.map((data, index) => (
+              <li
+                key={index}
+                className="text-DarkgrayishBlue hover:text-SoftOrange duration-75"
+              >
+                {data.title}
               </li>
             ))}
           </ul>
 
-          {/* Mobile navbar  */}
+          <ul className="md:hidden" onClick={handleMenu}>
+            <div className="z-50 absolute top-8 right-8">
+              {isMenu ? (
+                <img src={HamburgerClose} alt="" />
+              ) : (
+                <img src={Hamburger} alt="" />
+              )}
+            </div>
 
-          <div onClick={handleMenu} className="z-50 md:hidden">
-            {toggleMenu ? <img src={CloseMenu}></img> : <img src={Menu}></img>}
-          </div>
-
-          {toggleMenu ? (
-            <div className="md:hidden absolute top-0 right-0 bg-OffWhite px-5 py-32  h-screen w-[200px] flex items-start">
-              <ul className="flex flex-col gap-5">
-                {Navlinks.map(({ href, name }) => (
-                  <li key={href}>
-                    <a
-                      to={href}
-                      target="_self"
-                      className="text-xl font-base text-VerydarkBlue hover:text-SoftOrange duration-75"
-                    >
-                      {name}
-                    </a>
-                  </li>
+            {isMenu ? (
+              <ul className="bg-OffWhite flex flex-col gap-5 absolute top-0 right-0 p-5 py-40 w-[200px] shadow-md h-screen">
+                {Navlivks.map((data, index) => (
+                  <li key={index}>{data.title}</li>
                 ))}
               </ul>
-            </div>
-          ) : (
-            ""
-          )}
+            ) : (
+              ""
+            )}
+          </ul>
         </div>
-      </section>
-    </nav>
+      </nav>
+    </div>
   );
 };
 
